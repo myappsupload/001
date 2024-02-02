@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #chat-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        #chat-messages {
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #chat-input {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Type your message...">
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+
+        // Function to add message to the chat
+        function addMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Event listener for input change
+        chatInput.addEventListener('change', function () {
+            const message = chatInput.value.trim();
+            if (message !== '') {
+                addMessage('You: ' + message);
+                chatInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
